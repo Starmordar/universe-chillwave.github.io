@@ -58,9 +58,22 @@ svg {
     animation: rotating 1.5s linear infinite;
 }
 
+.sun {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    opacity: 1;
+    background-color: rgb(212, 255, 20);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 40px 25px rgb(212, 255, 20);
+    z-index: 9999;
+}
+
 .message {
-    top: 37%;
-    left: 55%;
+    top: 270px;
+    left: 53%;
     position: absolute;
     background: #f5f5f5;
     color: black;
@@ -97,6 +110,7 @@ svg {
     box-shadow: inset -35px 10px 96px -12px rgba(206, 206, 206, 0.52), inset 12px -1px 78px 9px rgb(0, 0, 0);
     animation: spinEarth 20s linear infinite, rotateEarth 40s linear;
     transform: rotate(-5deg);
+    z-index: 99999;
 }
 
 @keyframes spinEarth {

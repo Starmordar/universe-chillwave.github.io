@@ -1,114 +1,176 @@
 const STAR_AMOUNT = 50;
-let starContainer = [];
+const START_STAR_POSITION = '0px';
+
 const PAGE_WIDTH = window.innerWidth;
 const PAGE_HEIGHT = window.innerHeight;
 
+const BLUE_STAR_SPEED = 2;
+const RED_STAR_SPEED = 4;
+const WHITE_STAR_SPEED = 5;
+const YELLOW_STAR_SPEED = 7;
+const COMET_STAR_SPEED = 100;
+
+const STAR_UPDATE_INTERVAL = 25;
+const STAR_CREATE_INTERVAL = 100;
+const COMET_UPDATE_INTERVAL = 15;
+const COMET_CREATE_INTERVAL = 500;
+
+const ALIENS_APPEARS = 500;
+const MESSAGE_APPEAR = 2500;
+const MESSAGE_DISAPPEAR = 5000;
+
+let starContainer = [];
+
 
 function initStar(defaultLeft) {
-    let setColor;
+    let color,
+        colorNumber = Math.floor(1 + Math.random() * 4);
 
-    let color = Math.floor(1 + Math.random() * 4);
-    if (color == 1) setColor = 'white';
-    else if (color == 2) setColor = 'blue';
-    else if (color == 3) setColor = 'red';
-    else setColor = 'yellow';
+    if (colorNumber == 1) color = 'white';
+    else if (colorNumber == 2) color = 'blue';
+    else if (colorNumber == 3) color = 'red';
+    else color = 'yellow';
 
-    let size = Math.floor(1 + Math.random() * 3) + 'px';
-    let star = document.createElement('div');
-    star.className = "star " + setColor;
-    star.style.top = Math.floor(Math.random() * (window.innerHeight - 4)) + 'px';
-    star.style.left = defaultLeft || Math.floor(Math.random() * (window.innerWidth - 4)) + 'px';
-    star.style.width = size;
-    star.style.height = size;
+    let star = document.createElement('div'),
+        starSize = Math.floor(1 + Math.random() * 3) + 'px';
+
+    star.className = "star " + color;
+    star.style.top = Math.floor(Math.random() * (PAGE_HEIGHT - 4)) + 'px';
+    star.style.left = defaultLeft || Math.floor(Math.random() * (PAGE_WIDTH - 4)) + 'px';
+
+    star.style.width = starSize;
+    star.style.height = starSize;
+
     starContainer.push(star);
 }
 
-for (let i = 0; i < STAR_AMOUNT; i++) {
-    initStar();
-}
+function updateStarPosition() {
 
-for (let i = 0; i < starContainer.length; i++) {
-    document.body.appendChild(starContainer[i]);
-}
-
-
-
-setInterval(function () {
     for (let i = 0; i < starContainer.length; i++) {
-        let leftPos = starContainer[i].style.left;
-        leftPos = leftPos.slice(0, leftPos.length - 2);
-        if (starContainer[i].className.includes('blue')) {
-            leftPos = Number(leftPos) + 2;
-        }
-        else if (starContainer[i].className.includes('red')) {
-            leftPos = Number(leftPos) + 4;
-        }
-        else if (starContainer[i].className.includes('yellow')) {
-            leftPos = Number(leftPos) + 7;
-        } else {
-            leftPos = Number(leftPos) + 5;
-        }
-        if (leftPos >= PAGE_WIDTH - 5) {
+
+        let leftPos = parseInt(starContainer[i].style.left);
+
+        if (starContainer[i].className.includes('blue'))
+            leftPos = Number(leftPos) + BLUE_STAR_SPEED;
+        else if (starContainer[i].className.includes('red'))
+            leftPos = Number(leftPos) + RED_STAR_SPEED;
+        else if (starContainer[i].className.includes('yellow'))
+            leftPos = Number(leftPos) + YELLOW_STAR_SPEED;
+        else
+            leftPos = Number(leftPos) + WHITE_STAR_SPEED;
+
+        if (leftPos >= PAGE_WIDTH) {
             starContainer[i].remove();
+            starContainer.splice(i, 1);
+
             continue;
         }
+
         starContainer[i].style.left = leftPos + 'px';
     }
-}, 25);
+}
 
+function addNewStar() {
+    initStar(START_STAR_POSITION);
 
-setInterval(function () {
-    initStar('0px');
-    document.body.appendChild(starContainer[starContainer.length - 1]);
-}, 100)
+    let newStar = starContainer[starContainer.length - 1];
+    document.body.appendChild(newStar);
+}
 
-
-
-
-setInterval(function () {
+function addNewComet() {
     let comet = document.createElement('div');
     comet.className = "comet ";
     comet.style.top = Math.floor(Math.random() * (window.innerHeight - 4)) + 'px';
     comet.style.left = -130 + 'px';
     document.body.appendChild(comet);
 
-    setInterval(function () {
-        let leftPos = comet.style.left;
-        leftPos = leftPos.slice(0, leftPos.length - 2);
-        leftPos = Number(leftPos) + 100;
-        if (leftPos >= PAGE_WIDTH) {
-            comet.remove();
-        }
-        comet.style.left = leftPos + 'px';
-    }, 15);
+    return comet;
+}
 
-}, 500);
+function addNewSun() {
+    let sun = document.createElement('div');
+    sun.className = "sun";
+    sun.style.top = Math.floor(Math.random() * (window.innerHeight - 4)) + 'px';
+    sun.style.left = -130 + 'px';
+    document.body.appendChild(sun);
+
+    return sun;
+}
+
+function updateCometPosition(comet) {
+    let leftPos = parseInt(comet.style.left);
+
+    leftPos = Number(leftPos) + 100;
+    if (leftPos >= PAGE_WIDTH) {
+        comet.remove();
+        return;
+    }
+
+    comet.style.left = leftPos + 'px';
+}
+
+function updateSunPosition(sun) {
+    let leftPos = parseInt(sun.style.left);
+
+    leftPos = Number(leftPos) + 5;
+    if (leftPos >= PAGE_WIDTH) {
+        sun.remove();
+        return;
+    }
+
+    sun.style.left = leftPos + 'px';
+}
 
 function createMessage(msg) {
     let container = document.createElement('div');
     container.className = 'message';
-    let msgCon = document.createElement('p');
+
+    let p = document.createElement('p');
     let msgText = document.createTextNode(msg);
-    msgCon.appendChild(msgText);
-    container.appendChild(msgCon);
+    p.appendChild(msgText);
+    container.appendChild(p);
 
 
     container.style.width = '300px';
     container.style.height = '90px';
+
     if (document.querySelector('.message') == null) document.body.appendChild(container);
 }
+
+for (let i = 0; i < STAR_AMOUNT; i++) initStar();
+
+for (let i = 0; i < starContainer.length; i++) document.body.appendChild(starContainer[i]);
+
+setInterval(updateStarPosition, STAR_UPDATE_INTERVAL);
+setInterval(addNewStar, STAR_CREATE_INTERVAL);
+
+setInterval(function () {
+    let comet = addNewComet();
+
+    setInterval(function () { updateCometPosition(comet) }, COMET_UPDATE_INTERVAL);
+
+}, COMET_CREATE_INTERVAL);
+
+setInterval(function () {
+    let sun = addNewSun();
+
+    setInterval(function () { updateSunPosition(sun) }, 25);
+
+}, 6000);
 
 setTimeout(function () {
     let space = document.querySelector('svg');
     space.style.display = 'block';
     space.style.animation = 'down 10s linear';
+
     setTimeout(function () {
         createMessage("Eхидно посмеявшись над вами, инопланетянин отправился в сторону Нибиру");
 
         setTimeout(function () {
             document.querySelector('.message').remove();
-        }, 5000);
+        }, MESSAGE_DISAPPEAR);
 
-    }, 2500);
-}, 500);
+    }, MESSAGE_APPEAR);
+
+}, ALIENS_APPEARS);
 
