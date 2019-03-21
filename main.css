@@ -1,0 +1,112 @@
+html {
+    margin: 0;
+    padding: 0;
+    background: black;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    border-radius: 100%;
+    box-shadow: 0px 0px 1px 1px #ff0f0f;
+}
+
+.white {
+    background: white;
+    box-shadow: 0 0 15px 1px #fff;
+}
+
+.blue {
+    background: white;
+    box-shadow: 0 0 15px 2px #4444ff;
+}
+
+.red {
+    background: white;
+    box-shadow: 0 0 15px 2px #ff4444;
+}
+
+.yellow {
+    background: white;
+    box-shadow: 0 0 15px 1px #d1ff06;
+}
+
+.comet {
+    position: absolute;
+    border-bottom: 3px solid transparent;
+    border-right: 150px solid #55e63b;
+    border-top: 3px solid transparent;
+    opacity: 0.7;
+    top: -6px;
+    width: 10px;
+    filter: blur(1px);
+}
+
+.nub {
+    position: absolute;
+    top: -205px;
+    left: 35%;
+    display: none;
+}
+
+.ship {
+    animation: rotating 1.5s linear infinite;
+}
+
+.message {
+    top: 37%;
+    left: 55%;
+    position: absolute;
+    background: #f5f5f5;
+    color: black;
+    border-radius: 10px;
+}
+
+.message p {
+    padding: 15px;
+    margin: 0;
+}
+
+.message::before {
+    content: '';
+    position: absolute;
+    position: absolute;
+    bottom: -10px;
+    left: 15px;
+    border-width: 11px 11px 0;
+    border-style: solid;
+    border-color: #f5f5f5 transparent;
+}
+
+@keyframes down {
+    0%, 100% {
+        top: -205px
+    }
+    25%, 75% {
+        top: 33%;
+    }
+}
+
+@keyframes rotating {
+    0%, 50%, 100% {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    25% {
+        -ms-transform: rotate(1deg);
+        -moz-transform: rotate(1deg);
+        -webkit-transform: rotate(1deg);
+        -o-transform: rotate(1deg);
+        transform: rotate(1deg);
+    }
+    75% {
+        -ms-transform: rotate(-1deg);
+        -moz-transform: rotate(-1deg);
+        -webkit-transform: rotate(-1deg);
+        -o-transform: rotate(-1deg);
+        transform: rotate(-1deg);
+    }
+}
