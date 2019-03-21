@@ -78,12 +78,47 @@ html {
     border-color: #f5f5f5 transparent;
 }
 
+.earth {
+    background-image: url("https://res.cloudinary.com/dshmwg7vw/image/upload/v1551102200/earthnight2.jpg");
+    background-size: cover;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: -400px;
+    width: 30vmin;
+    height: 30vmin;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: inset -35px 10px 96px -12px rgba(206, 206, 206, 0.52), inset 12px -1px 78px 9px rgb(0, 0, 0);
+    animation: spinEarth 20s linear infinite, EarthRotate 40s linear;
+    transform: rotate(-5deg);
+}
+
+@keyframes spinEarth {
+    from {
+        background-position-x: 0;
+    }
+    to {
+        background-position-x: 60vmin;
+    }
+}
+
 @keyframes down {
     0%, 100% {
         top: -205px
     }
     25%, 75% {
         top: 33%;
+    }
+}
+
+@keyframes EarthRotate {
+    0%, 20% {
+        left: -400px;
+    }
+    100% {
+        left: 120%;
     }
 }
 

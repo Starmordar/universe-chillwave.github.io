@@ -110,4 +110,3 @@ setTimeout(function () {
     }, 2500);
 }, 500);
 
-
