@@ -6,29 +6,33 @@ html {
 }
 
 .star {
+    background: white;
     position: absolute;
     border-radius: 100%;
-    box-shadow: 0px 0px 1px 1px #ff0f0f;
 }
 
 .white {
-    background: white;
     box-shadow: 0 0 15px 1px #fff;
+    -webkit-box-shadow: 0 0 15px 1px #fff;
+    -moz-box-shadow: 0 0 15px 1px #fff;
 }
 
 .blue {
-    background: white;
     box-shadow: 0 0 15px 2px #4444ff;
+    -webkit-box-shadow: 0 0 15px 2px #4444ff;
+    -moz-box-shadow: 0 0 15px 2px #4444ff;
 }
 
 .red {
-    background: white;
     box-shadow: 0 0 15px 2px #ff4444;
+    -webkit-box-shadow: 0 0 15px 2px #ff4444;
+    -moz-box-shadow: 0 0 15px 2px #ff4444;
 }
 
 .yellow {
-    background: white;
     box-shadow: 0 0 15px 1px #d1ff06;
+    -webkit-box-shadow: 0 0 15px 1px #d1ff06;
+    -moz-box-shadow: 0 0 15px 1px #d1ff06;
 }
 
 .comet {
@@ -36,13 +40,14 @@ html {
     border-bottom: 3px solid transparent;
     border-right: 150px solid #55e63b;
     border-top: 3px solid transparent;
-    opacity: 0.7;
     top: -6px;
     width: 10px;
     filter: blur(1px);
+    -ms-filter: blur(1px);
+    -webkit-filter: blur(1px);
 }
 
-.nub {
+svg {
     position: absolute;
     top: -205px;
     left: 35%;
@@ -70,7 +75,6 @@ html {
 .message::before {
     content: '';
     position: absolute;
-    position: absolute;
     bottom: -10px;
     left: 15px;
     border-width: 11px 11px 0;
@@ -91,7 +95,7 @@ html {
     margin: auto;
     border-radius: 50%;
     box-shadow: inset -35px 10px 96px -12px rgba(206, 206, 206, 0.52), inset 12px -1px 78px 9px rgb(0, 0, 0);
-    animation: spinEarth 20s linear infinite, EarthRotate 40s linear;
+    animation: spinEarth 20s linear infinite, rotateEarth 40s linear;
     transform: rotate(-5deg);
 }
 
@@ -104,21 +108,21 @@ html {
     }
 }
 
+@keyframes rotateEarth {
+    0%, 20% {
+        left: -400px;
+    }
+    100% {
+        left: 120%;
+    }
+}
+
 @keyframes down {
     0%, 100% {
         top: -205px
     }
     25%, 75% {
         top: 33%;
-    }
-}
-
-@keyframes EarthRotate {
-    0%, 20% {
-        left: -400px;
-    }
-    100% {
-        left: 120%;
     }
 }
 

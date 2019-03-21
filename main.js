@@ -1,6 +1,8 @@
 const STAR_AMOUNT = 50;
 let starContainer = [];
-const WIDTH = window.innerWidth;
+const PAGE_WIDTH = window.innerWidth;
+const PAGE_HEIGHT = window.innerHeight;
+
 
 function initStar(defaultLeft) {
     let setColor;
@@ -46,7 +48,7 @@ setInterval(function () {
         } else {
             leftPos = Number(leftPos) + 5;
         }
-        if (leftPos >= WIDTH - 5) {
+        if (leftPos >= PAGE_WIDTH - 5) {
             starContainer[i].remove();
             continue;
         }
@@ -74,7 +76,7 @@ setInterval(function () {
         let leftPos = comet.style.left;
         leftPos = leftPos.slice(0, leftPos.length - 2);
         leftPos = Number(leftPos) + 100;
-        if (leftPos >= WIDTH) {
+        if (leftPos >= PAGE_WIDTH) {
             comet.remove();
         }
         comet.style.left = leftPos + 'px';
