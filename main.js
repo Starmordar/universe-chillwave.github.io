@@ -1,24 +1,3 @@
-const STAR_AMOUNT = 50;
-const START_STAR_POSITION = '0px';
-
-const PAGE_WIDTH = window.innerWidth;
-const PAGE_HEIGHT = window.innerHeight;
-
-const BLUE_STAR_SPEED = 2;
-const RED_STAR_SPEED = 4;
-const WHITE_STAR_SPEED = 5;
-const YELLOW_STAR_SPEED = 7;
-const COMET_STAR_SPEED = 100;
-
-const STAR_UPDATE_INTERVAL = 25;
-const STAR_CREATE_INTERVAL = 100;
-const COMET_UPDATE_INTERVAL = 15;
-const COMET_CREATE_INTERVAL = 500;
-
-const ALIENS_APPEARS = 500;
-const MESSAGE_APPEAR = 2500;
-const MESSAGE_DISAPPEAR = 5000;
-
 let starContainer = [];
 
 
@@ -51,13 +30,13 @@ function updateStarPosition() {
         let leftPos = parseInt(starContainer[i].style.left);
 
         if (starContainer[i].className.includes('blue'))
-            leftPos = Number(leftPos) + BLUE_STAR_SPEED;
+            leftPos = leftPos + BLUE_STAR_SPEED;
         else if (starContainer[i].className.includes('red'))
-            leftPos = Number(leftPos) + RED_STAR_SPEED;
+            leftPos = leftPos + RED_STAR_SPEED;
         else if (starContainer[i].className.includes('yellow'))
-            leftPos = Number(leftPos) + YELLOW_STAR_SPEED;
+            leftPos = leftPos + YELLOW_STAR_SPEED;
         else
-            leftPos = Number(leftPos) + WHITE_STAR_SPEED;
+            leftPos = leftPos + WHITE_STAR_SPEED;
 
         if (leftPos >= PAGE_WIDTH) {
             starContainer[i].remove();
@@ -100,7 +79,7 @@ function addNewSun() {
 function updateCometPosition(comet) {
     let leftPos = parseInt(comet.style.left);
 
-    leftPos = Number(leftPos) + 100;
+    leftPos = leftPos + 100;
     if (leftPos >= PAGE_WIDTH) {
         comet.remove();
         return;
@@ -112,7 +91,7 @@ function updateCometPosition(comet) {
 function updateSunPosition(sun) {
     let leftPos = parseInt(sun.style.left);
 
-    leftPos = Number(leftPos) + 5;
+    leftPos = leftPos + 5;
     if (leftPos >= PAGE_WIDTH) {
         sun.remove();
         return;

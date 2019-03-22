@@ -1,0 +1,20 @@
+const STAR_AMOUNT = 50;
+const START_STAR_POSITION = '0px';
+
+const PAGE_WIDTH = window.innerWidth;
+const PAGE_HEIGHT = window.innerHeight;
+
+const BLUE_STAR_SPEED = 2;
+const RED_STAR_SPEED = 4;
+const WHITE_STAR_SPEED = 5;
+const YELLOW_STAR_SPEED = 7;
+const COMET_STAR_SPEED = 100;
+
+const STAR_UPDATE_INTERVAL = 25;
+const STAR_CREATE_INTERVAL = 100;
+const COMET_UPDATE_INTERVAL = 15;
+const COMET_CREATE_INTERVAL = 500;
+
+const ALIENS_APPEARS = 500;
+const MESSAGE_APPEAR = 2500;
+const MESSAGE_DISAPPEAR = 5000;
