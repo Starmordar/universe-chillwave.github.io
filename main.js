@@ -140,7 +140,7 @@ setInterval(function () {
 setTimeout(function () {
     let space = document.querySelector('svg');
     space.style.display = 'block';
-    space.style.animation = 'down 10s linear';
+    space.style.animation = 'goDown 10s linear';
 
     setTimeout(function () {
         createMessage("Eхидно посмеявшись над вами, инопланетянин отправился в сторону Нибиру");
