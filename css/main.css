@@ -98,7 +98,7 @@ svg {
 }
 
 .earth {
-    background-image: url("https://res.cloudinary.com/dshmwg7vw/image/upload/v1551102200/earthnight2.jpg");
+    background-image: url("../assets/img/earth_theme.jpg");
     background-size: cover;
     position: absolute;
     z-index: 10;
